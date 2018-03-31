@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome Dick Head</h1>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: pink;">[{{error}}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: pink;">[{{error}}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.remember_me() }} {{ form.remember_me.label }}
+        </p>
+
+        <p>
+            {{form.submit() }}
+        </p>
+    </form>
+    <p style="margin: 0;">Need an account?</p><br>
+    <a href="{{ url_for('register') }}">Click here to register</a>
+{% endblock %}

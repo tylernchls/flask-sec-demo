@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    {% if title %}
+    <meta charset="UTF-8">
+    <title>{{ title }} - Welcome to hell</title>
+    {% else %}
+    <title>Bart cant pick locks</title>
+    {% endif %}
+</head>
+<body>
+    <div>Flask-Sec: 
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">logout</a>
+        {% endif %}        
+        <a href="{{ url_for('submit_post') }}">New</a>
+        
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+</html>
